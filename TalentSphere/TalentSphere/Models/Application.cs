@@ -17,13 +17,13 @@ namespace TalentSphere.Models
 
         public virtual User Candidate { get; set; } = null!;
 
-        public DateTime SubmittedDate { get; set; } = DateTime.UtcNow;
+        public DateTime SubmittedDate { get; set; }
 
-        public ApplicationStatus Status { get; set; } = ApplicationStatus.Pending;
+        public ApplicationStatus Status { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; }
 
-        public DateTime? UpdatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
     }
     
 }

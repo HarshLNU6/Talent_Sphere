@@ -10,6 +10,7 @@ namespace TalentSphere.Models
 
 		public int EmployeeId { get; set; }
 
+
 		public string Position { get; set; }
 
 		public string Timeline { get; set; }

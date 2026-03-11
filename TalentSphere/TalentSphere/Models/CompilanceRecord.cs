@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using TalentSphere.Enums;
  
 namespace TalentSphere.Models
 {
@@ -10,7 +11,7 @@ namespace TalentSphere.Models
 
         public int EmployeeID { get; set; }
 
-        public string Type { get; set; } // Policy / Document
+        public CompilanceRecordType Type { get; set; }
 
         public string Result { get; set; }
 
@@ -18,10 +19,12 @@ namespace TalentSphere.Models
 
         public string Notes { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; }
 
-        public DateTime? UpdatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
 
-        public Employee Employee { get; set; }
+        public bool IsDeleted { get; set; }
+
+        public virtual Employee Employee { get; set; }
     }
 }

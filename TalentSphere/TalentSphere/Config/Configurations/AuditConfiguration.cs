@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TalentSphere.Models;
+using TalentSphere.Enums;
 
 namespace TalentSphere.Config.Configurations
 {
@@ -9,17 +10,24 @@ namespace TalentSphere.Config.Configurations
         public void Configure(EntityTypeBuilder<Audit> builder)
         {
             builder.ToTable("Audits");
-            builder.HasKey(a => a.ComplianceID);
+            builder.HasKey(a => a.AuditID);
 
-            builder.Property(a => a.Type).IsRequired().HasMaxLength(255);
-            builder.Property(a => a.Result).IsRequired().HasMaxLength(255);
+            builder.Property(a => a.Scope).IsRequired().HasMaxLength(255);
+            builder.Property(a => a.Findings).HasMaxLength(1000);
             builder.Property(a => a.Date).IsRequired();
-            builder.Property(a => a.Notes).HasMaxLength(1000);
-
+            builder.Property(a => a.Status)
+                   .HasDefaultValue(AuditStatus.Pending)
+                   .IsRequired();
+            builder.Property(a => a.IsDeleted)
+                   .HasDefaultValue(false)
+                   .IsRequired();
             builder.Property(a => a.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
             builder.Property(a => a.UpdatedAt).HasDefaultValueSql("GETUTCDATE()");
 
-            builder.HasOne(a => a.Employee).WithMany().HasForeignKey(a => a.EmployeeID).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(a => a.HR)
+                   .WithMany()
+                   .HasForeignKey(a => a.HRID)
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

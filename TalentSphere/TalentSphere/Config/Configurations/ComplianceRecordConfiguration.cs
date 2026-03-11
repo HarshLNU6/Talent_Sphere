@@ -14,6 +14,10 @@ namespace TalentSphere.Config.Configurations
             builder.Property(c => c.Type).IsRequired();
             builder.Property(c => c.Date).IsRequired();
 
+            builder.Property(c => c.IsDeleted)
+                   .HasDefaultValue(false)
+                   .IsRequired();
+
             builder.Property(c => c.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
             builder.Property(c => c.UpdatedAt).HasDefaultValueSql("GETUTCDATE()");
 
