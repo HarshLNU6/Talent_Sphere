@@ -16,6 +16,18 @@ namespace TalentSphere.Mappers
            .ForMember(dest => dest.Notes, opt => opt.MapFrom(src => src.Notes))
            .ForMember(dest => dest.EmployeeID, opt => opt.MapFrom(src => src.EmployeeID))
            .ReverseMap();
+
+            // Job mappings
+            CreateMap<CreateJobDTO, Job>()
+                .ReverseMap();
+
+            // Interview mappings
+            CreateMap<CreateInterviewDTO, Interview>()
+                .ReverseMap();
+
+            // Selection mappings
+            CreateMap<CreateSelectionDTO, Selection>()
+                .ReverseMap();
         }
     }
 }

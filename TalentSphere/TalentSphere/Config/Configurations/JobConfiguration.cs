@@ -19,7 +19,6 @@ namespace TalentSphere.Config.Configurations
             builder.Property(j => j.Requirements).HasMaxLength(2000);
 
             builder.Property(j => j.Status)
-                    .HasConversion<string>()
                    .HasDefaultValue(JobStatus.Open);
 
             builder.Property(j => j.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
